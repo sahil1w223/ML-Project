@@ -3,7 +3,7 @@ import sys
 from src.logger import logging
 from src.exception import CustomException
 import pickle
-
+import dill
 import numpy as np
 import pandas as pd
 from sklearn.metrics import r2_score
@@ -31,3 +31,10 @@ def evaluate_model(X_train, y_train,X_test,y_test,models):
 
     return report
         
+def load_obj(file_path):
+    try:
+        with open(file_path,'rb') as f:
+            return dill.load(f)
+        
+    except Exception as e:
+        raise CustomException(e,sys)
