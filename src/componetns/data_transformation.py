@@ -13,16 +13,16 @@ import pandas as pd
 from src.utils import save_object
 
 
+@dataclass
 class datatransformationconfig:
     data_transformatiion_path = os.path.join('artifacts', 'data_transformation.pkl')
 
-@dataclass
 class datatransformation:
     def __init__(self):
         path = datatransformationconfig()
 
-    try:
-        def transformation(self):
+    def transformation(self):
+        try:
             num_fetures = ['reading_score', 'writing_score']
             cat_fetures = ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
 
@@ -53,10 +53,10 @@ class datatransformation:
 
 
             return preproceser
-    except Exception as e:
-        raise CustomException(e,sys)
+        except Exception as e:
+            raise CustomException(e,sys)
     
-    def data_transformation(self,train_data_path, test_data_path):
+    def data_transformations(self,train_data_path, test_data_path):
         try:
 
             logging.info("reading the train and test data")
